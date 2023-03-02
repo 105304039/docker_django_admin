@@ -1,0 +1,57 @@
+<!-- home.html -->
+
+
+<!-- 假使直接顯示list模樣的結果 就直接用：{{ post_list }}-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首頁</title>  <!-- 標籤頁名稱 -->
+    <link href="//fonts.googleapis.com/css?family=Lemon" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//djangogirlstaipei.github.io/assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="site-title text-center">
+            <a href="/">A Django Girl’s Adventure</a>
+        </h1>
+    </div>
+    <div class="container">
+        {% for post in post_list %}  <!-- 貼文迴圈開始 -->
+        <div class="post-wrapper">
+            <div class="post">
+                <div class="post-heading">
+                    <h2 class="title">
+                        <!-- 假如只有顯示標題
+                        <a href="#">{{ post.title }}</a>
+                         -->
+                        <!-- 假如我每篇文章有對應的url：
+                         -->
+                        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                    </h2>
+                    <div class="date">{{ post.created_at|date:"Y / m / d" }}</div>
+                </div>
+                {% if post.photo %}
+                <div class="thumbnail">
+                    <img src="{{ post.photo }}" alt="">
+                </div>
+                {% else %}
+                <div class="thumbnail thumbnail-default"></div>
+                {% endif %}
+                <div class="post-content read-more-block">
+                    {{ post.content }}
+                </div>
+                <div class="post-footer">
+                    <a class="read-more" href="{% url 'post_detail' pk=post.pk %}">
+                        Read More <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
