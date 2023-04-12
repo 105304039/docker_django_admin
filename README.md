@@ -1,6 +1,6 @@
 # docker_django_admin
 ## Description
-Packing a Django 1.8.19 project where the Dockerfile helps download the related dependencies and set the password of superuser.
+Packing a Django 1.8.19 project where the Dockerfile helps download the related dependencies and set the password of superuser. The Django project is created from the [tutorial](https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/content/).
 
 
 ## Main Question
@@ -14,7 +14,7 @@ One way of setting the superuser is using the package [django-createsuperuserwit
 ### My solution
 At the CMD part, I create the superuser by using `python3 manage.py createsuperuser` and then use the changesuperuserpw.py to reset the password I want. The default username, password, and email are stored as ENV variables, so that I can overwrite them as I create the docker container.
 
-```ruby
+```docker
 FROM python:3.7
 EXPOSE 8000
 WORKDIR /django_admin
@@ -32,7 +32,8 @@ python3 manage.py runserver 0.0.0.0:8000
 ```
 <br>
 Therefore, the command which builds the docker image is
-```
+
+```cmd
 docker run -it -p [port on your computer]:8000 \
     -e USERNAME=[your superuser name] \
     -e PASSWORD=[your superuser password] \
