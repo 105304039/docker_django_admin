@@ -1,10 +1,10 @@
-FROM --platform=$BUILDPLATFORM python:3.7-alpine AS builder
+FROM python:3.7
 EXPOSE 8000
 WORKDIR /django_admin
 COPY . .
 ENV PASSWORD 000
 ENV USERNAME abc
-ENV EMAIL opening0922@gmail.com
+ENV EMAIL a@gmail.com
 ENV PYTHONUNBUFFERED=1
 ENV DJANGO_SETTINGS_MODULE mysite.settings
 RUN pip3 install -r requirements.txt --no-cache-dir
