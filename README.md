@@ -14,7 +14,7 @@ One way of setting the superuser is using the package [django-createsuperuserwit
 ### My solution
 At the CMD part, I create the superuser by using `python3 manage.py createsuperuser` and then use the changesuperuserpw.py to reset the password I want. The default username, password, and email are stored as ENV variables, so that I can overwrite them as I create the docker container.
 
-```docker
+```dockerfile
 FROM python:3.7
 EXPOSE 8000
 WORKDIR /django_admin
@@ -33,7 +33,7 @@ python3 manage.py runserver 0.0.0.0:8000
 <br>
 Therefore, the command which builds the docker image is
 
-```cmd
+```powershell
 docker run -it -p [port on your computer]:8000 \
     -e USERNAME=[your superuser name] \
     -e PASSWORD=[your superuser password] \
