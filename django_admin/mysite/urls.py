@@ -15,7 +15,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 # Import view functions from trips app.
-from trips.views import hello_world, home, post_detail, upload
+from trips.views import hello_world, home, post_detail
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
